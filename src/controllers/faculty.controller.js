@@ -128,5 +128,6 @@ export const loginFaculty = async (req, res) => {
             success: false,
             message: err.message
         })
+        
     }
 }
