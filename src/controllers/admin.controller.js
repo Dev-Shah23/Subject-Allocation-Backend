@@ -1,6 +1,7 @@
 // Admin controller placeholder
 // TODO: implement controller methods
-
+import dotenv from "dotenv";
+dotenv.config();
 import bcrypt from "bcrypt";
 import { supabase } from "../config/supabase.js";
 
