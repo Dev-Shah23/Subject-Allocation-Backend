@@ -1,32 +1,10 @@
-import express from "express"
-import bcrypt from "bcrypt"
-import supabase from "../config/supabase.js"
+import dotenv from "dotenv";
+dotenv.config();
+import express from "express";
+import { adminLogin } from "../controllers/admin.controller.js";
 
-const router = express.Router()
+const router = express.Router();
 
-router.post("/login", async (req, res) => {
-  const { email, password } = req.body
+router.post("/login", adminLogin);
 
-  const { data: admin } = await supabase
-    .from("admin")
-    .select("*")
-    .eq("email", email)
-    .single()
-
-  if (!admin) {
-    return res.status(401).json({ message: "Invalid email" })
-  }
-
-  const match = await bcrypt.compare(password, admin.password_hash)
-
-  if (!match) {
-    return res.status(401).json({ message: "Invalid password" })
-  }
-
-  res.json({
-    message: "Login successful",
-    adminId: admin.admin_id
-  })
-})
-
-export default router   
+export default router;

@@ -1,3 +1,5 @@
+import dotenv from "dotenv";
+dotenv.config();
 import { supabase } from "../config/supabase.js";
 
 export const submitPreferences = async (req, res) => {
